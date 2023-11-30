@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Sign in</title>
+  </head>
+  <body>
+    <div class="container">
+      <section class="form">
+        <a href="#" class="form__logo logo">Your Logo</a>
+        <div class="form__content">
+          <h1 class="form__title">Sign in</h1>
+          <p class="form__subtitle">If you don’t have an account register</p>
+          <p class="form__subtitle">
+            You can
+            <a href="./sign-up (регистрация).html" class="form__link"> Register here !</a>
+          </p>
+          <form action="#" class="form__form-box form-box">
+            <div class="form-box__input-box input-box">
+              <label class="input-box__info" for="email">Email</label>
+              <label class="input-box__icon" for="email"
+                ><img src="./email.svg" alt="email"
+              /></label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                placeholder="Enter your email address"
+              />
+            </div>
+            <div class="form-box__input-box input-box">
+              <label class="input-box__info" for="password">Password</label>
+              <label class="input-box__icon" for="password"
+                ><img src="./password.svg" alt="password"
+              /></label>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Enter your password"
+              />
+            </div>
+            <div class="form-box__btn-box btn-box">
+              <button type="submit" id="submit" onclick="alerted()">Login</button>
+            </div>
+           
+          </form>
+        </div>
+      </section>
+      <section class="promo">
+        <div class="promo__box">
+          <div class="promo__content">
+            <img src="./Saly-10.png" alt="Saly" class="promo__image" />
+            <h1 class="promo__title">Sign in to name</h1>
+            <p class="promo__subtitle">Lorem Ipsum is simply</p>
+        
+          </div>
+        </div>
+      </section>
+    </div>
+    <script>
+       
+        const su = document.getElementById('submit');
+        function alerted() {
+        su.style.color = "blue";
+        setTimeout(()=> {su.style.color = "white"; }, 20);
+    }
+    </script>
+    
+    <script>
+
+        
+        // Import the functions you need from the SDKs you need
+        import {
+        getAuth,
+        createUserWithEmailAndPassword,
+        signInWithEmailAndPassword}
+         from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+             apiKey: "AIzaSyCVhDeN_Wxfrg6bBYj40_9thg9l_0qAWl0",
+             authDomain: "aythen-bc68b.firebaseapp.com",
+             databaseURL: "https://aythen-bc68b-default-rtdb.firebaseio.com",
+             projectId: "aythen-bc68b",
+             storageBucket: "aythen-bc68b.appspot.com",
+             messagingSenderId: "860027097920",
+             appId: "1:860027097920:web:7a37a6781711eaf82820a5",
+             measurementId: "G-2K94RKD0ZJ" 
+            };
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const auth = getAuth(app);
+        
+        su = async () => {
+            const login_email_value = document.getElementById('email');
+            const login_password_value = document.getElementById('password');
+            try {
+                await signInWithEmailAndPassword(auth, login_email_value, login_password_value);
+                message("Welcome to the website");
+            }
+             catch (error) {
+                message("Login error")
+            }
+        }
+      </script>
+  </body>
+</html>
